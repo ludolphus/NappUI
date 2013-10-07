@@ -31,12 +31,23 @@ var view = Ti.UI.createView({
 });
 
 
-var string = "Hello world. This is an addition by @dezinezync #winning. Coming soon 😃 to the NappUI module.";
+// this test has 'NappUI module' as a link
+// had to add '\n ' to make the last line show up correctly and tappable. Because of the emoji the third line gets 
+// pushed down a view pixels going outside of label's frame. You can best see this effect by setting a 
+// backgroundColor on the label
+var string = "Hello world. This is an addition by @dezinezync #winning. Coming soon 😃 to the NappUI module\n ";
+
+// on this test tapping the 'l' or 'e' doesn't work, most likely because of the emoji
+//var string = "Coming soon 😃 to the NappUI module";
+
+// this test will crash the app when the 'e' of the last word 'module' is tapped (added a link for it in attributedText)
+//var string = "Hello world. This is an addition by @dezinezync #winning. Coming soon to the NappUI module";
 
 var label = Ti.UI.createLabel({
 	width: 290,
     bottom: 15,
 	left: 15,
+    backgroundColor: "red",
 
     text: string,
     font: {
@@ -92,7 +103,10 @@ var label = Ti.UI.createLabel({
     		text: "the",
     		underline: 4, //bold(er) line
     		backgroundColor: "#aaaaaa"
-    	}]
+    	}, {
+            text: "NappUI module",
+            link: "www.apple.com"
+        }]
     }
 });
 
